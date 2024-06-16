@@ -1,0 +1,35 @@
+<div *ngIf="policies.length > 0">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date of Birth</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Premium</th>
+        <th>Premium Frequency</th>
+        <th>Premium Paying Term</th>
+        <th>Term</th>
+        <th>sumAssured</th>
+        <th>Benefits</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let policy of policies">
+        <td>{{ policy.id }}</td>
+        <td>{{ policy.dob | date }}</td>
+        <td>{{ policy.age }}</td>
+        <td>{{ policy.gender }}</td>
+        <td>{{ policy.premium }}</td>
+        <td>{{ policy.premiumFrequency }}</td>
+        <td>{{ policy.premiumPayingTerm }}</td>
+        <td>{{ policy.term }}</td>
+        <td>{{policy.sumAssured}}</td>
+        <td>{{ policy.benefits }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="policies.length === 0">
+  No policies found.
+</div>

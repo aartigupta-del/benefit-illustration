@@ -1,0 +1,80 @@
+<form #form1="ngForm" (ngSubmit)="calculate(form1)">
+  <label>Date of Birth:
+    <input type="date" [(ngModel)]="dob" name="dob" (change)="calculateAge()" required>
+    <div *ngIf="form1.controls['dob']?.invalid && form1.controls['dob']?.touched" style="color: red;">
+      Date of Birth is required.
+    </div>
+  </label>
+
+  <label>Age:
+    <input type="number" [(ngModel)]="age" name="age" readonly required>
+    <div *ngIf="age && (age < 23 || age > 56)" style="color: red;">
+      Age must be between 23 and 56.
+    </div>
+  </label>
+
+  <label>Gender:
+    <select [(ngModel)]="gender" name="gender" required>
+      <option value="">Select Gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+    <div *ngIf="form1.controls['gender']?.invalid && form1.controls['gender']?.touched" style="color: red;">
+      Gender is required.
+    </div>
+  </label>
+
+  <label>Sum Assured:
+    <input type="number" [(ngModel)]="sumAssured" name="sumAssured"  required>
+    <!-- <div *ngIf="form1.controls['sumAssured']?.invalid && form1.controls['sumAssured']?.touched" style="color: red;">
+      Sum Assured must be between 10000 and 50000.
+    </div> -->
+  </label>
+
+  <label>Premium:
+    <input type="number" [(ngModel)]="premium" name="premium" min="10000" max="50000" required>
+    <div *ngIf="form1.controls['premium']?.invalid && form1.controls['premium']?.touched" style="color: red;">
+      Premium must be between 10000 and 50000.
+    </div>
+  </label>
+
+  <label>Term:
+    <input type="number" [(ngModel)]="term" name="term" min="5" max="30" required>
+    <div *ngIf="form1.controls['term']?.invalid && form1.controls['term']?.touched" style="color: red;">
+      Term must be between 5 and 30.
+    </div>
+  </label>
+
+  <label>Premium Frequency:
+    <select [(ngModel)]="premiumFrequency" name="premiumFrequency" required>
+      <option value="">Select Frequency</option>
+      <option value="yearly">Yearly</option>
+      <option value="half-yearly">Half-Yearly</option>
+      <option value="monthly">Monthly</option>
+    </select>
+    <div *ngIf="form1.controls['premiumFrequency']?.invalid && form1.controls['premiumFrequency']?.touched" style="color: red;">
+      Premium Frequency is required.
+    </div>
+  </label>
+
+  <label>Premium Paying Term:
+    <input type="number" [(ngModel)]="premiumPayingTerm" name="premiumPayingTerm" min="5" max="30" required>
+    <div *ngIf="form1.controls['premiumPayingTerm']?.invalid && form1.controls['premiumPayingTerm']?.touched" style="color: red;">
+      Premium Paying Term must be between 5 and 30.
+    </div>
+  </label>
+
+  <button type="submit">Submit</button>
+  
+  <div *ngIf="!form1.valid && form1.submitted" style="color: red;">
+    Please fill out all fields correctly.
+  </div>
+</form>
+
+
+
+<div *ngIf="benefits">
+  <div *ngFor="let key of getKeys(benefits)">
+    {{ key }}: {{ benefits[key] }}
+  </div>
+</div>
